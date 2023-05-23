@@ -1,3 +1,4 @@
+/* eslint-disable arrow-body-style */
 import React from "react"
 import style from "./SobreMi.module.css"
 
@@ -5,7 +6,7 @@ const SobreMi = () => {
   return (
     <div className={style.defaultContainer}>
       <div className={style.imgContainer}>
-        <img src="./images/resources/pf.jpg" alt="Angel Castellanos" />
+        <img src="images/resources/pf.jpg" alt="Angel Castellanos" />
       </div>
       <div className={style.textContainer}>
         <h1> Angel Castellanos </h1>

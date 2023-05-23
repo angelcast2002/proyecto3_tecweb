@@ -7,7 +7,7 @@ const Habilidades = () => {
     <div className={style.defaultContainer}>
       <div className={style.idiomasContainer}>
         <div className={style.imgContainer}>
-          <img src="./images/svg/idiomas.svg" alt="Idiomas" />
+          <img src="images/svg/idiomas.svg" alt="Idiomas" />
         </div>
         <div className={style.textContainer}>
           <h1> Idiomas </h1>

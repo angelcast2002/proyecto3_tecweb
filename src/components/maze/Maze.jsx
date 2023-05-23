@@ -18,39 +18,39 @@ const Maze = ({ json, w, h }) => {
   const { gameConfig } = useStoreon("gameConfig")
   const skins = {
     0: [
-      "./images/resources/skin1/playerUp.png",
-      "./images/resources/skin1/playerRight.png",
-      "./images/resources/skin1/playerDown.png",
-      "./images/resources/skin1/playerLeft.png",
+      "images/resources/skin1/playerUp.png",
+      "images/resources/skin1/playerRight.png",
+      "images/resources/skin1/playerDown.png",
+      "images/resources/skin1/playerLeft.png",
     ],
     1: [
-      "./images/resources/skin2/playerUp.png",
-      "./images/resources/skin2/playerRight.png",
-      "./images/resources/skin2/playerDown.png",
-      "./images/resources/skin2/playerLeft.png",
+      "images/resources/skin2/playerUp.png",
+      "images/resources/skin2/playerRight.png",
+      "images/resources/skin2/playerDown.png",
+      "images/resources/skin2/playerLeft.png",
     ],
     2: [
-      "./images/resources/skin3/playerUp.png",
-      "./images/resources/skin3/playerRight.png",
-      "./images/resources/skin3/playerDown.png",
-      "./images/resources/skin3/playerLeft.png",
+      "images/resources/skin3/playerUp.png",
+      "images/resources/skin3/playerRight.png",
+      "images/resources/skin3/playerDown.png",
+      "images/resources/skin3/playerLeft.png",
     ],
   }
   const temas = {
     0: [
-      "./images/resources/tema1/vWall.png",
-      "./images/resources/tema1/hWall.png",
-      "./images/resources/tema1/corner.png",
+      "images/resources/tema1/vWall.png",
+      "images/resources/tema1/hWall.png",
+      "images/resources/tema1/corner.png",
     ],
     1: [
-      "./images/resources/tema2/vWall.png",
-      "./images/resources/tema2/hWall.png",
-      "./images/resources/tema2/corner.png",
+      "images/resources/tema2/vWall.png",
+      "images/resources/tema2/hWall.png",
+      "images/resources/tema2/corner.png",
     ],
     2: [
-      "./images/resources/tema3/vWall.png",
-      "./images/resources/tema3/hWall.png",
-      "./images/resources/tema3/corner.png",
+      "images/resources/tema3/vWall.png",
+      "images/resources/tema3/hWall.png",
+      "images/resources/tema3/corner.png",
     ],
   }
   const [maze, setMaze] = useState(json)
@@ -75,7 +75,6 @@ const Maze = ({ json, w, h }) => {
         }
         i += 1
       }
-
       if (
         (x + dx === 1 && y + dy === 1)
         || (x + dx === 2 && y + dy === 1)
@@ -204,7 +203,35 @@ const Maze = ({ json, w, h }) => {
               case "+":
                 return <Pared key={key} skin={temas[parseInt(gameConfig.tema, 10)][2]} orientation={0} />
               case " ":
-                return <Pared key={key} skin="/images/resources/way.png" orientation={0} />
+                if (
+                  (ci === 1 && ri === 1)
+                    || (ci === 2 && ri === 1)
+                    || (ci === 1 && ri === 2)
+                    || (ci === 2 && ri === 2)
+                ) {
+                  return <Pared key={key} skin="images/resources/infoPoint.png" orientation={0} />
+                }
+                if (
+                  (ci === 1 && ri === 19)
+                    || (ci === 2 && ri === 19)
+                    || (ci === 2 && ri === 18)
+                    || (ci === 1 && ri === 18)
+                ) {
+                  return <Pared key={key} skin="images/resources/infoPoint.png" orientation={0} />
+                } if (
+                  (ci === 16 && ri === 11)
+                    || (ci === 17 && ri === 11)
+                    || (ci === 16 && ri === 10)
+                    || (ci === 17 && ri === 10)
+                    || (ci === 16 && ri === 12)
+                    || (ci === 17 && ri === 12)
+                ) {
+                  return <Pared key={key} skin="images/resources/infoPoint.png" orientation={0} />
+                } if ((ci === 27 && ri === 1) || (ci === 28 && ri === 1) || (ci === 29 && ri === 1)) {
+                  return <Pared key={key} skin="images/resources/infoPoint.png" orientation={0} />
+                }
+                return <Pared key={key} skin="images/resources/way.png" orientation={0} />
+
               default:
                 return null
             }
@@ -213,7 +240,7 @@ const Maze = ({ json, w, h }) => {
       ) : (
         <div className={style.menuContainer}>
           <div className={style.subOpcionContainer}>
-            <h1>¡Ganaste!</h1>
+            <h1>Contáctame</h1>
             <Button label="Regresar al menu" backgroundColor="#fff" size="large" onClick={handleClick} />
           </div>
         </div>
