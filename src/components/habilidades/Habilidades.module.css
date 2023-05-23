@@ -1,0 +1,136 @@
+.defaultContainer {
+  display: flex;
+  flex-direction: row;
+  width: 755px;
+  height: 130px;
+  padding: 10px;
+  justify-content: space-around;
+  align-items: center;
+  opacity: 0;
+  animation: defaultContainer 1s forwards;
+  background-color: #c3bfbf;
+  border-radius: 10px;
+  box-shadow: 0 0 10px 0 rgba(0, 0, 0, 0.5);
+  color: #000;
+  gap: 30px;
+}
+
+@keyframes defaultContainer {
+  from {
+    opacity: 0;
+  }
+
+  to {
+    opacity: 0.95;
+  }
+}
+
+.idiomasContainer {
+  gap: 30px;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  height: 100%;
+}
+
+.imgContainer {
+  height: fit-content;
+  width: fit-content;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.imgContainer img {
+  width: 75px;
+  height: auto;
+}
+
+.textContainer {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: center;
+  height: 100%;
+}
+
+.textContainer h1 {
+  font-size: 2.2rem;
+  color: var(--primary-color);
+  text-align: start;
+  width: fit-content;
+  height: fit-content;
+  margin: 0;
+}
+
+.textContainer ul {
+  font-size: 1rem;
+  color: var(--secondary-color);
+  text-align: start;
+  width: fit-content;
+  margin: 0;
+  padding: 0;
+  height: 100%;
+  display: flex;
+  justify-content: space-around;
+  flex-direction: column;
+}
+
+.textContainer li {
+  padding: 5px 0 0 20;
+}
+
+.lenguajesContainer {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.lenguajesContainer h1 {
+  font-size: 2.2rem;
+  color: var(--primary-color);
+  text-align: center;
+  width: fit-content;
+  height: fit-content;
+  margin: 0;
+  padding: 0;
+}
+
+.elementoLenguaje {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-items: center;
+  gap: 0 20px;
+}
+
+.lenguajes span {
+  display: block;
+}
+
+.progress {
+  appearance: none;
+  border: none;
+  border-radius: 5px;
+  background-color: transparent;
+  overflow: hidden;
+}
+
+.progress::-webkit-progress-bar {
+  background-color: #f0f0f0;
+}
+
+.progress::-webkit-progress-value {
+  background-color: #2196f3;
+}
+
+.progress::-moz-progress-bar {
+  background-color: #2196f3;
+}
+
+.progress::-ms-fill {
+  background-color: #2196f3;
+}

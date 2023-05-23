@@ -1,0 +1,57 @@
+.defaultContainer {
+  display: flex;
+  flex-direction: row;
+  width: 755px;
+  height: 130px;
+  padding: 10px;
+  justify-content: center;
+  align-items: center;
+  opacity: 0;
+  animation: defaultContainer 1s forwards;
+  background-color: #c3bfbf;
+  border-radius: 10px;
+  box-shadow: 0 0 10px 0 rgba(0, 0, 0, 0.5);
+  color: #000;
+  gap: 20px;
+}
+
+@keyframes defaultContainer {
+  from {
+    opacity: 0;
+  }
+
+  to {
+    opacity: 0.95;
+  }
+}
+
+.educacionElementContainer {
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.educacionElementContainer * {
+  margin: 0;
+  padding: 0;
+}
+
+.educacionElementContainer h1 {
+  font-size: 1.2rem;
+  color: var(--primary-color);
+  text-align: center;
+}
+
+.educacionElementContainer p {
+  font-size: 0.9rem;
+  color: var(--secondary-color);
+  text-align: center;
+}
+
+.experienciaContainer {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  gap: 0 20px;
+}

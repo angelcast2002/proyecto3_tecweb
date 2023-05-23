@@ -5,6 +5,11 @@ import { navigate } from "@store"
 import PropTypes from "prop-types"
 import style from "./Maze.module.css"
 import Button from "../button/Button"
+import SobreMi from "../sobreMi/SobreMi"
+import Habilidades from "../habilidades/Habilidades"
+import Educacion from "../educacion/Educacion"
+import Experiencia from "../experienciaLaboral/Experiencia"
+import Contacto from "../contacto/Contacto"
 
 import Pared from "../Pared/Pared"
 import Player from "../Player/Player"
@@ -51,7 +56,7 @@ const Maze = ({ json, w, h }) => {
   const [maze, setMaze] = useState(json)
   const [sprite, setSprite] = useState(skins[parseInt(gameConfig.skin, 10)][1])
   const [win, setWin] = useState(false)
-  const [showInfo, setShowInfo] = useState(true)
+  const [showInfo, setShowInfo] = useState("sobreMi")
   const interval = useRef(null)
   const keyListener = useRef(null)
 
@@ -71,21 +76,20 @@ const Maze = ({ json, w, h }) => {
         i += 1
       }
 
-      console.log("x", x + dx, "y", y + dy)
       if (
         (x + dx === 1 && y + dy === 1)
         || (x + dx === 2 && y + dy === 1)
         || (x + dx === 1 && y + dy === 2)
         || (x + dx === 2 && y + dy === 2)
       ) {
-        setShowInfo(true)
+        setShowInfo("sobreMi")
       } else if (
         (x + dx === 1 && y + dy === 19)
         || (x + dx === 2 && y + dy === 19)
         || (x + dx === 2 && y + dy === 18)
         || (x + dx === 1 && y + dy === 18)
       ) {
-        setShowInfo(true)
+        setShowInfo("educacion")
       } else if (
         (x + dx === 16 && y + dy === 11)
         || (x + dx === 17 && y + dy === 11)
@@ -94,15 +98,15 @@ const Maze = ({ json, w, h }) => {
         || (x + dx === 16 && y + dy === 12)
         || (x + dx === 17 && y + dy === 12)
       ) {
-        setShowInfo(true)
+        setShowInfo("habilidades")
       } else if (
         (x + dx === 27 && y + dy === 1)
         || (x + dx === 28 && y + dy === 1)
         || (x + dx === 29 && y + dy === 1)
       ) {
-        setShowInfo(true)
+        setShowInfo("experiencia")
       } else {
-        setShowInfo(false)
+        setShowInfo("contacto")
       }
 
       if (newMaze[y + dy][x + dx] === " ") {
@@ -158,7 +162,24 @@ const Maze = ({ json, w, h }) => {
 
   return (
     <div className={style.generalMazeContainer}>
-      <div className={style.infoContainer}>{showInfo ? <h1>Información</h1> : null}</div>
+      <div className={style.infoContainer}>
+        {(() => {
+          switch (showInfo) {
+            case "sobreMi":
+              return <SobreMi />
+            case "habilidades":
+              return <Habilidades />
+            case "educacion":
+              return <Educacion />
+            case "experiencia":
+              return <Experiencia />
+            case "contacto":
+              return <Contacto />
+            default:
+              return null
+          }
+        })()}
+      </div>
       {!win ? (
         <div
           className={style.maze}
