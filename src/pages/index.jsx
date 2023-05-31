@@ -20,7 +20,7 @@ const Page = () => {
       Component = <GameOver />
       break
     default:
-      Component = <Menu />
+      Component = <Game />
   }
 
   return (

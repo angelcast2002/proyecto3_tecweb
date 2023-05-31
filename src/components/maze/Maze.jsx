@@ -1,7 +1,6 @@
 import React, { useEffect, useState, useRef } from "react"
 import { useStoreon } from "storeon/react"
 // eslint-disable-next-line import/no-unresolved
-import { navigate } from "@store"
 import PropTypes from "prop-types"
 import style from "./Maze.module.css"
 import Button from "../button/Button"
@@ -37,21 +36,9 @@ const Maze = ({ json, w, h }) => {
     ],
   }
   const temas = {
-    0: [
-      "images/resources/tema1/vWall.png",
-      "images/resources/tema1/hWall.png",
-      "images/resources/tema1/corner.png",
-    ],
-    1: [
-      "images/resources/tema2/vWall.png",
-      "images/resources/tema2/hWall.png",
-      "images/resources/tema2/corner.png",
-    ],
-    2: [
-      "images/resources/tema3/vWall.png",
-      "images/resources/tema3/hWall.png",
-      "images/resources/tema3/corner.png",
-    ],
+    0: ["images/resources/tema1/vWall.png", "images/resources/tema1/hWall.png", "images/resources/tema1/corner.png"],
+    1: ["images/resources/tema2/vWall.png", "images/resources/tema2/hWall.png", "images/resources/tema2/corner.png"],
+    2: ["images/resources/tema3/vWall.png", "images/resources/tema3/hWall.png", "images/resources/tema3/corner.png"],
   }
   const [maze, setMaze] = useState(json)
   const [sprite, setSprite] = useState(skins[parseInt(gameConfig.skin, 10)][1])
@@ -59,6 +46,7 @@ const Maze = ({ json, w, h }) => {
   const [showInfo, setShowInfo] = useState("sobreMi")
   const interval = useRef(null)
   const keyListener = useRef(null)
+  const [tooltip, setTooltip] = useState(false)
 
   const movePlayer = (dx, dy) => {
     setMaze((oldMaze) => {
@@ -125,18 +113,30 @@ const Maze = ({ json, w, h }) => {
     const handleKeyDown = (e) => {
       switch (e.key) {
         case "ArrowUp":
+          if (tooltip === false) {
+            setTooltip(true)
+          }
           setSprite(skins[gameConfig.skin][0])
           movePlayer(0, -1)
           break
         case "ArrowDown":
+          if (tooltip === false) {
+            setTooltip(true)
+          }
           setSprite(skins[gameConfig.skin][2])
           movePlayer(0, 1)
           break
         case "ArrowLeft":
+          if (tooltip === false) {
+            setTooltip(true)
+          }
           setSprite(skins[gameConfig.skin][3])
           movePlayer(-1, 0)
           break
         case "ArrowRight":
+          if (tooltip === false) {
+            setTooltip(true)
+          }
           setSprite(skins[gameConfig.skin][1])
           movePlayer(1, 0)
           break
@@ -156,11 +156,16 @@ const Maze = ({ json, w, h }) => {
   }, [])
 
   const handleClick = () => {
-    navigate("/")
+    window.location.reload()
   }
 
   return (
     <div className={style.generalMazeContainer}>
+      {!tooltip ? (
+        <div className={style.tooltipContainer}>
+          <h1>Utiliza las flechas para moverte hacia las zonas con grama</h1>
+        </div>
+      ) : null}
       <div className={style.infoContainer}>
         {(() => {
           switch (showInfo) {
@@ -218,7 +223,8 @@ const Maze = ({ json, w, h }) => {
                     || (ci === 1 && ri === 18)
                 ) {
                   return <Pared key={key} skin="images/resources/infoPoint.png" orientation={0} />
-                } if (
+                }
+                if (
                   (ci === 16 && ri === 11)
                     || (ci === 17 && ri === 11)
                     || (ci === 16 && ri === 10)
@@ -227,7 +233,8 @@ const Maze = ({ json, w, h }) => {
                     || (ci === 17 && ri === 12)
                 ) {
                   return <Pared key={key} skin="images/resources/infoPoint.png" orientation={0} />
-                } if ((ci === 27 && ri === 1) || (ci === 28 && ri === 1) || (ci === 29 && ri === 1)) {
+                }
+                if ((ci === 27 && ri === 1) || (ci === 28 && ri === 1) || (ci === 29 && ri === 1)) {
                   return <Pared key={key} skin="images/resources/infoPoint.png" orientation={0} />
                 }
                 return <Pared key={key} skin="images/resources/way.png" orientation={0} />
@@ -241,7 +248,7 @@ const Maze = ({ json, w, h }) => {
         <div className={style.menuContainer}>
           <div className={style.subOpcionContainer}>
             <h1>Contáctame</h1>
-            <Button label="Regresar al menu" backgroundColor="#fff" size="large" onClick={handleClick} />
+            <Button label="Volver a jugar" backgroundColor="#fff" size="large" onClick={handleClick} />
           </div>
         </div>
       )}
